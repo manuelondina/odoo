@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="view_order_form_inherit_json" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.json</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='order_lines']" position="before">
+                    <page name="json_data" string="JSON Data">
+                        <field name="fiscal_position"/>
+                        <field name="partner_id" widget="many2one" options="{'no_create': True}"/>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="string">Order Lines</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/tree" position="attributes">
+                    <attribute name="string">Order Lines</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/tree/field[@name='name']" position="attributes">
+                    <attribute name="string">Product Name</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="string">Unit Price</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/tree/field[@name='product_uom_qty']" position="attributes">
+                    <attribute name="string">Quantity</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
